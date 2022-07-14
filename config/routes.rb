@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  
+  get "about", to: "about#index"
+  # get “/users”, to: “users#index”
+  # get '/about', to: 'about#index'
+  
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
