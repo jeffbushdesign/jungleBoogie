@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
+  get 'users/new'
+  get 'users/create'
   get "about", to: "about#index"
   # get “/users”, to: “users#index”
   # get '/about', to: 'about#index'
@@ -22,6 +27,21 @@ Rails.application.routes.draw do
     resources :products, except: [:edit, :update, :show]
     resources :categories, only: [:index, :new, :create]
   end
+
+  # ------- USER AUTHENTIFICATION -------
+  # Sign up a new user
+  # Sign up form
+  get '/signup' => 'users#new'
+  # Create the new user
+  post '/users' => 'users#create'
+
+  # Login a user and create a new session
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  # Log out
+  get '/logout' => 'sessions#destroy'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
